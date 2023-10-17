@@ -72,7 +72,7 @@ Error Handling: Implement error handling to provide feedback to the applicant if
             
 <!--            <input type="submit" name="action" value ="Submit Loan Application"></br></br>-->
             
-            <input type="submit" name="action" value ="save" style="color:white;background-color:blue"</br></br>
+            <input type="submit" name="action" value ="Save and Next"id="loanapplication" style="color:white;background-color:blue"</br></br>
             <style>
             h3{
                 background-color: lightcyan;

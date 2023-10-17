@@ -73,7 +73,7 @@ Communication:</br>
        <h6>Employee Signature :<input type="file" name="employeesign" placeholder="Signature oF employee" required></h6></br></br>
             <input type="password" name="comfirmnameofbank" placeholder="Confirm name of bank" required></br></br>
             
-            <input type="submit" name="action" value="Proceed for direct deposit authorization"style="color:white;background-color:blue"></br>
+            <input type="submit" name="action" value="Save direct deposit authorization"style="color:white;background-color:blue"></br>
 <!--<button type="submit" name="action" value="submit" >submit</button>-->
    
         </form>

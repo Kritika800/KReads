@@ -34,7 +34,7 @@
          
             <input type="email" name="validmail" placeholder="mailid" required></br></br></br>
             
-            <input type="submit" name="action" value="Proceed for new Registration"style="color:white;background-color:purple"></br></br>
+            <input type="submit" name="action" value="Save Registration"   style="color:white;background-color:purple"></br></br>
             
             <style>
             h3{

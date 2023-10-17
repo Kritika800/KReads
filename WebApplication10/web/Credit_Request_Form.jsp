@@ -36,7 +36,7 @@
             <input type="file" name="reasonforcreditrequest" placeholder="Valid Reason For Credit Request" required></br>
             <h6>Employee signature:<input type="file" name="employeesign" placeholder="Sign" required></h6></br></br>
             
-            <input type="submit" name="action" value="Send Credit Request"style="color:white;background-color:green"></br></br>
+            <input type="submit" name="action" value="Save Credit request" style="color:white;background-color:green"></br></br>
             <style>
             
             

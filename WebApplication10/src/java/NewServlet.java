@@ -58,29 +58,35 @@ public class NewServlet extends HttpServlet {
             String newstr="";
             int z,ny;
          
-            if(ok.equals("Register"))
+            if(ok.equals("Save Registration"))
             {
-               
+                HttpSession session=request.getSession();
                 String str=request.getParameter("confirmtypeofcurrency");
                 String str1=request.getParameter("contactnumber");
                 String str2=request.getParameter("emailaddress");
                 String str3=request.getParameter("validmail");
                String str4=request.getParameter ("mailinghomeaddress");
                String str5=request.getParameter ("state");
-                String query="Insert into bankaccountregistration(id,confirmtypeofaccount,confirmtypeofcurrency,firstname,lastname,contactnumber,emailaddress,mailinghomeaddress,city,state,postalcode,country,validmail) values('"+a+"','"+o+"','"+str+"','"+c+"','"+d+"','"+str1+"','"+str2+"','"+str4+"','"+h+"','"+str5+"','"+j+"','"+k+"','"+str3+"')";
-            PreparedStatement stmt=con.prepareStatement(query);
-            int rstmt= stmt.executeUpdate();
-           if(rstmt>0)
-            {
-                out.println("data inserted");
-            }
-            /* TODO output your page here. You may use following sample code. */
-            else
-            {
-                out.println("could not process");
-            }    
+                
+                session.setAttribute("userid", a);
+                session.setAttribute("confirmtypeofaccount", o);
+                session.setAttribute("confirmtypeofcurrency", str);
+                session.setAttribute("firstname", c);
+                session.setAttribute("lastname", d);
+                session.setAttribute("contactnumber", str1);
+                session.setAttribute("emailaddress", str2);
+                session.setAttribute("mailinghomeaddress", str4);
+                session.setAttribute("city", h);
+                session.setAttribute("state", str5);
+                session.setAttribute("postalcode", j);
+                session.setAttribute("country", str3);
+                session.setAttribute("validmail", j);
+                
+               response.sendRedirect("registersession.jsp");//sending values into the session.
+                
+                
         }
-           else if(ok.equals("Send Credit Request"))
+           else if(ok.equals("Save Credit request"))
             {
 //                String str =request.getParameter("action");
                 String str =request.getParameter("permanentaddress");
@@ -93,35 +99,65 @@ public class NewServlet extends HttpServlet {
                 String str7 =request.getParameter("raesonforcreditrequest");
                 String str8 =request.getParameter("employeesign");
                 String str9 =request.getParameter("parentname");
-                String query="Insert into creditrequest(id,parentname,permanentaddress,city,region,postalcode,country,contactnumber,firstparticipantname,dateofbirth,activity,classcode,startdate,amountpaid,reasonforcreditrequest,sign) values('"+a+"','"+str9+"','"+str+"','"+h+"','"+i+"','"+j+"','"+k+"','"+str1+"','"+c+"','"+str2+"','"+str3+"','"+str4+"','"+str5+"','"+str6+"','"+str7+"','"+str8+"')";
-                PreparedStatement stmt=con.prepareStatement(query);
-                int rstmt=stmt.executeUpdate();
-                if(rstmt>0)
-                {
-                    out.println("credit request submitted succesfully");
-                }
-                else
                 
-                    out.println("error in parsing request");
+                HttpSession session=request.getSession();
+                
+                 session.setAttribute("userid", a);
+                session.setAttribute("parentname", str9);
+                session.setAttribute("permanentaddress", str);
+                session.setAttribute("city", h);
+                session.setAttribute("region", i);
+                session.setAttribute("postalcode", j);
+                session.setAttribute("country", k);
+                session.setAttribute("contactnumber", str1);
+                session.setAttribute("firstparticipantname", c);
+                session.setAttribute("dateofbirth", str2);
+                session.setAttribute("activity",str3);
+                session.setAttribute("classcode", str4);
+                session.setAttribute("startdate", str5);
+                session.setAttribute("amountpaid", str6);
+               session.setAttribute("reasonforcreditrequest", str7);
+               session.setAttribute("sign", str8);
+                
+            
+                response.sendRedirect("creditrequestsession.jsp");
+                
+                
                 
             }
-           else if(ok.equals("Proceed for direct deposit authorization"))
+           else if(ok.equals("Save direct deposit authorization"))
             {
+                
                 String str5 =request.getParameter("address");
                 String str6 =request.getParameter("comfirmnameofbank");
-                String query="Insert Into direct_deposit_authorization_form(id,companyname,firstname,lastname,address,city,region,postalcode,country,nameofbank,amounttobedeposited,employeesign,confirmbankname) values('"+a+"','"+b+"','"+c+"','"+d+"','"+str5+"','"+h+"','"+i+"','"+j+"','"+k+"','"+l+"','"+m+"','"+n+"','"+str6+"')";
-                PreparedStatement stmt= con.prepareStatement(query);
-                int rstmt=stmt.executeUpdate();
-                if(rstmt>0)
                 
-                    out.println("direct deposit authorization form submited successfuLLY");
                 
-                else
-                    out.println("could not process bank authorization form");
+                
+                
+                HttpSession session=request.getSession();
+                
+                 session.setAttribute("userid", a);
+                session.setAttribute("companyname", b);
+                session.setAttribute("firstname", c);
+                session.setAttribute("lastname", d);
+                session.setAttribute("address", str5);
+                session.setAttribute("city", h);
+                session.setAttribute("region", i);
+                session.setAttribute("postalcode", j);
+                session.setAttribute("country", k);
+                session.setAttribute("nameofbank", l);
+                session.setAttribute("amounttobedeposited",m);
+                session.setAttribute("employeesign", n);
+                session.setAttribute("confirmbankname", str6);
+                
+                
+            
+                response.sendRedirect("directdepositsession.jsp");
+               
                         
            
         }
-           else if(ok.equals("Request for authorization"))
+           else if(ok.equals("Save bankauthorization"))
             {
                 String str =request.getParameter("emailid");
                 String str1 =request.getParameter("phonenumber");
@@ -130,29 +166,31 @@ public class NewServlet extends HttpServlet {
                 String str4 =request.getParameter("bankaccounttype");
                 String str5 =request.getParameter("confirmbankaccounttype");
                 
-                if(str4.equals(str5))
-                {
-               String query="Insert into bankauthorization(id,city,firstname,emailid,phonenumber,bankname,bankbranch,bankphonenumber,bankaccounttype,confirmbankaccountype,sign) values('"+a+"','"+h+"','"+c+"','"+str+"','"+str1+"','"+l+"','"+str2+"','"+str3+"','"+str4+"','"+str5+"','"+n+"')";
-               PreparedStatement stmt=con.prepareStatement(query);
-               int rstmt=stmt.executeUpdate();
-               if(rstmt>0)
-               {
-                   out.println("Bank authorization request successfully submitted !");
-               }
-               else
-            {
-                out.println("could not process for aauthorization");
+                 if(str4.equals(str5))
+                     
+                 {
+                     
+                 HttpSession session=request.getSession();
+                
+                 session.setAttribute("bankaccounttype",str4);
+                session.setAttribute("confirmbankaccounttype",str5);
+                
+                session.setAttribute("userid",a);
+                session.setAttribute("city",h);
+                session.setAttribute("firstname",c);
+                session.setAttribute("emailid",str);
+                session.setAttribute("phonenumber",str1);
+                session.setAttribute("bankname",l);
+                session.setAttribute("bankbranch",str2);
+                session.setAttribute("bankphonenumber",str3);
+                session.setAttribute("bankaccounttype",str4);
+                session.setAttribute("confirmbankaccounttype",str5);
+                session.setAttribute("sign",n);
+                
+                response.sendRedirect("bankauthsession.jsp");
             }
             }
-                else
-                    out.println("the confirm type of account does not match with the bank account type ");
-            }
-            
-            
-            
-            
-           
-           else if(ok.equals("save"))
+           else if(ok.equals("loanapplication"))
            {
                
                String str3 =request.getParameter("dateofbirth");
@@ -181,7 +219,7 @@ public class NewServlet extends HttpServlet {
                 String str7 =request.getParameter("jobtitle");
                 String str8 =request.getParameter("employername");
 //                Part filePart = request.getPart("blobFile");
-               // String str9=request.getParameter("confirmreasonofloan");
+                String str9=request.getParameter("confirmreasonofloan");
                 String str10=request.getParameter("homeaddress");
                 
                  session.setAttribute("DATEOFBIRTH",str3);
@@ -200,11 +238,11 @@ public class NewServlet extends HttpServlet {
                               session.setAttribute("COUNTRY",k);
                                session.setAttribute("JOBTITLE",str7);
                                 session.setAttribute("EMPLOYERNAME",str8);
-                                // session.setAttribute("CONFIRMREASONOFLOAN",str9);
-                                 // session.setAttribute("EMPLOYEESIGN",n);
+                                 session.setAttribute("CONFIRMREASONOFLOAN",str9);
+                                  session.setAttribute("EMPLOYEESIGN",n);
                                    
                                    
-                 response.sendRedirect("newjsp.jsp");
+                 response.sendRedirect("loansession.jsp");
 //                 out.println(DATEOFBIRTH);
            }
                  else

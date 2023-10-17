@@ -28,7 +28,7 @@
             <h6>Employee Signature:  <input type="file" name="employeesign" placeholder="Employee sign" style="border-color: red"required></h6></br></br>
         
             
-            <input type="submit" name="action" value="Request for authorization"style="color:white;background-color:blue;border-color: black">
+            <input type="submit" name="action" value="Save bankauthorization"  style="color:white;background-color:blue;border-color: black">
             
             <style>
           
